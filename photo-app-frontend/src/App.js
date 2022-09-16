@@ -3,7 +3,6 @@ import Navbar from './components/Navbar';
 import LogIn from "./pages/LoginPage.jsx";
 import { Routes, Route } from "react-router-dom"
 import Searchbar from './components/Searchbar';
-
 // import data origin
 
 function App() {
