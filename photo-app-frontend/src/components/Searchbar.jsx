@@ -12,6 +12,7 @@ function Searchbar ({placeHolderSearch, data}) {
       const searchWord =  event.target.value
       setWordEntered(searchWord)
     //   filtering logic of the searchbar
+    console.log(data)
       const newFilter = data.filter((value) =>{
         return value.title.toLowerCase.includes(searchWord.toLowerCase);
       });
