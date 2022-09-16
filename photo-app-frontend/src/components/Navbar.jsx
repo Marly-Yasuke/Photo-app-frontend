@@ -1,7 +1,7 @@
 import React from "react";
 
-class Navbar extends React.Component {
-    render(){
+function Navbar () {
+   
         return (
             <nav>
                 <p>Feed</p>
@@ -9,6 +9,6 @@ class Navbar extends React.Component {
             </nav>
         )
     }
-}
+
 
 export default Navbar;
