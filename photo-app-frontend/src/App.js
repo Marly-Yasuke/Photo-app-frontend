@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="App">
      <header>
-      <Searchbar placeHolderSearch={"Search"} data={""}/>
+      <Searchbar placeHolderSearch={"Search"}/>
       <Navbar/>
      </header>
      <Routes>
