@@ -23,4 +23,4 @@ function AuthProviderWrapper(props) {
   )
 }
 
-export { AuthProviderWrapper, AuthContext };
+export { AuthProviderWrapper, AuthContext,  };

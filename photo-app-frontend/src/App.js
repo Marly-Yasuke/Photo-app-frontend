@@ -7,8 +7,10 @@ import ErrorPage from './pages/ErrorPage';
 // import data origin
 
 function App() {
+
   return (
     <div className="App">
+
      <header>
       <Searchbar placeHolderSearch={"Search"}/>
       <Navbar/>
