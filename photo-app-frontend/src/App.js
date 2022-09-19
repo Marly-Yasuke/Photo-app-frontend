@@ -20,6 +20,7 @@ function App() {
         <Route path="user/:username" element={<UserProfile />} />
         <Route path="about" element={<AboutPage />} />
         <Route path="*" element={<ErrorPage />} />
+        <Route path="user" element={<UserProfile />} />
       </Routes>
     </div>
   );
