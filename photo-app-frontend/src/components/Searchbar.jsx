@@ -4,11 +4,15 @@ import { Link } from "react-router-dom";
 import SearchIcon from '@mui/icons-material/Search';
 import CloseIcon from '@mui/icons-material/Close';
 import axios from 'axios'
+import { useContext } from "react";                   
+import { AuthContext } from "../context/auth.context"; 
 // import BookData from '../Data.json'
 
 function Searchbar ({placeHolderSearch}) {
     const [filterData, setFilteredData] = useState([]);
     const [wordEntered, setWordEntered] = useState("");
+    const { isLoggedIn, user } = useContext(AuthContext);
+
 
 useEffect(() => {
 
@@ -22,23 +26,16 @@ useEffect(() => {
     const handleFilter = (event) =>{
       const searchWord =  event.target.value
       setWordEntered(searchWord)
-    //   filtering logic of the searchbar
-    
-      // const newFilter = data.filter((value) =>{
-      //   return value.title.toLowerCase.includes(searchWord.toLowerCase);
-      // });
-    //   if (searchWord === ""){
-    //     setFilteredData([])
-    //   }else {
-    //     setFilteredData(newFilter);
-  
-    // }
+   
     }
     const clearInput = ()=>{
         setFilteredData([]);
     }
 return (
     <div className="search">
+                {isLoggedIn && (
+                    <>
+
     <div className="searchInput">
         <input type="text" placeholder={placeHolderSearch} value={wordEntered} onChange={handleFilter}/>
         <div className="searchIcon">
@@ -58,6 +55,18 @@ return (
             </Link>
         )})}
     </div>
+    </>
+
+    )}
+              {!isLoggedIn && (
+
+                <>
+        
+               
+        
+                </>
+        
+              )}
     </div>
 )
 }
