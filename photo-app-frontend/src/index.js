@@ -4,7 +4,7 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
-import { AuthProviderWrapper } from "./context/auth.context";
+import { AuthProviderWrapper } from "./context/auth.context"; 
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,6 +14,7 @@ root.render(
       <App />
     </AuthProviderWrapper>
   </BrowserRouter>
+
   // </React.StrictMode>
 );
 
