@@ -1,5 +1,9 @@
 import React, { useEffect, useRef } from "react";
 import "./Signup.css";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+
 const Signup = ({ setShowModal }) => {
   const modal = useRef();
 
@@ -9,13 +13,60 @@ const Signup = ({ setShowModal }) => {
   }, []);
   return (
     <dialog ref={modal} className="Signup">
-      <h2>Create an account bro!</h2>
+      <h2>Create an account!</h2>
       <form action="">
-        <input type="text" placeholder="name" /> <br></br>
-        <input type="email" placeholder="email" /> <br></br>
-        <input type="password" placeholder="password" /> <br></br>
-        <input type="text" placeholder="role" /> <br></br>
-        <button>Register</button>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              required
+              fullWidth
+              id="name"
+              label="Name"
+              name="name"
+              autoComplete="name"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              fullWidth
+              id="email"
+              label="Email Address"
+              name="email"
+              autoComplete="email"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              fullWidth
+              name="password"
+              label="Password"
+              type="password"
+              id="password"
+              autoComplete="new-password"
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField
+              required
+              fullWidth
+              id="role"
+              label="Role"
+              name="role"
+              autoComplete="role"
+            />
+          </Grid>
+        </Grid>{" "}
+        <br />
+        <Button
+          type="submit"
+          halfWidth
+          variant="contained"
+          className="signup-button"
+        >
+          Register
+        </Button>
       </form>
     </dialog>
   );
