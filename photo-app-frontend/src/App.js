@@ -3,6 +3,7 @@ import Navbar from './components/Navbar';
 import LogIn from "./pages/LoginPage.jsx";
 import { Routes, Route } from "react-router-dom"
 import Searchbar from './components/Searchbar';
+import ErrorPage from './pages/ErrorPage';
 // import data origin
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
      </header>
      <Routes>
         <Route path="/" element={<LogIn />} />
+        <Route path="*" element={ <ErrorPage /> } /> 
      </Routes>
     </div>
   );
