@@ -15,6 +15,8 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import WorkIcon from "@mui/icons-material/Work";
 // import BookData from '../Data.json'
 
+const API_URL = "https://lets-shoot.herokuapp.com";
+
 function Searchbar({ placeHolderSearch }) {
   const [filterData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
@@ -22,8 +24,13 @@ function Searchbar({ placeHolderSearch }) {
 
   useEffect(() => {
     if (!wordEntered) return;
+    const token = localStorage.getItem("authToken");
     axios
-      .get(`http://localhost:8080/api/user?username=${wordEntered}`)
+      .get(`${API_URL}/api/user?username=${wordEntered}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         setFilteredData(res.data);
         console.log(res.data);

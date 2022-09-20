@@ -54,9 +54,9 @@ function LogIn() {
     axios
       .post(`${API_URL}/api/auth/login`, requestBody)
       .then((response) => {
-        console.log("JWT token", response.data.authToken);
+        console.log("JWT token", response.data);
 
-        storeToken(response.data.authToken);
+        storeToken(response.data);
         authenticateUser();
         navigate("/profile");
       })
