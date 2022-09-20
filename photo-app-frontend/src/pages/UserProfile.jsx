@@ -26,6 +26,7 @@ const UserProfile = () => {
     }
   }, [params.username]);
 
+// users profile
   if (!userToDisplay) return <div>No profile</div>;
   return (
     <div>
