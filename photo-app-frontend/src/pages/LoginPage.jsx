@@ -44,7 +44,7 @@ function LogIn() {
   const navigate = useNavigate();
   const { storeToken, authenticateUser } = useContext(AuthContext);
 
-  const handleEmail = (e) => setUsername(e.target.value);
+  const handleUsername = (e) => setUsername(e.target.value);
   const handlePassword = (e) => setPassword(e.target.value);
 
   const handleLoginSubmit = (e) => {
@@ -100,7 +100,7 @@ function LogIn() {
                     name="username"
                     autoComplete="username"
                     value={username}
-                    onChange={handleEmail}
+                    onChange={handleUsername}
                   />
                 </Grid>
                 <Grid item xs={12}>

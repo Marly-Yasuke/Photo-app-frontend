@@ -20,19 +20,28 @@ const UserPictures = ({ id }) => {
         console.log("No images found");
       });
   }, []);
-  //const filteredPictures = pictures.filter(pictures => {
-   // return pictures.model === "Mila"
-//})
+  const filteredPictures = pictures.filter((pictures) => {
+    console.log(pictures.model);
+    return pictures.shot_by?.username === "Marko89";
+  });
   return (
     <>
       <section>
         <h2>My Pictures</h2>
       </section>
-      <section >
-        <ImageList sx={{ width: "90%", height: 500, display: "flex",
-              flexDirection: "row",
-              justifyContent: "center", }} cols={3} rowHeight={164}>
-          {pictures.map((picture) => (
+      <section>
+        <ImageList
+          sx={{
+            width: "90%",
+            height: 500,
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+          }}
+          cols={3}
+          rowHeight={164}
+        >
+          {filteredPictures.map((picture) => (
             <ImageListItem key={picture.link}>
               <img
                 src={`${picture.link}?w=164&h=164&fit=crop&auto=format`}
