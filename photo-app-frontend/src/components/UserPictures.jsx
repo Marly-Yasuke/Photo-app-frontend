@@ -6,6 +6,8 @@ import axiosInstance from "../utils/axiosInstance";
 import DeleteImage from "./DeleteImage";
 import { AuthContext } from "../context/auth.context";
 import { useParams } from "react-router";
+import Button from '@mui/material/Button';
+
 
 
 const API_URL = "https://lets-shoot.herokuapp.com";
@@ -14,6 +16,7 @@ const UserPictures = ({ id }) => {
   const {username} = useParams()
   const [pictures, setPictures] = useState([]);
   const {user} = useContext(AuthContext)
+  const [image, setImage] = useState("");
   useEffect(() => {
     axiosInstance
       .get(`${API_URL}/api/images?shot_by=${username}`)
@@ -36,15 +39,12 @@ const UserPictures = ({ id }) => {
       <section>
         <h2>My Pictures</h2>
       </section>
-      <button>Add Photos</button>
+      
       <section>
         <ImageList
           sx={{
-            width: "90%",
-            height: 500,
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "center",
+            width: 500,
+            height: 450,
           }}
           cols={3}
           rowHeight={164}

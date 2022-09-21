@@ -54,6 +54,7 @@ const UserProfile = () => {
       <Button variant="outlined" onClick={() => setShowForm(!showForm)}>Edit profile</Button>
       {showForm && <EditProfile />}
       <UserPictures id={userToDisplay._id} />
+      
     </div>
   );
 };
