@@ -5,7 +5,7 @@ import { Routes, Route } from "react-router-dom";
 import Searchbar from "./components/Searchbar";
 import ErrorPage from "./pages/ErrorPage";
 import AboutPage from "./pages/AboutPage";
-import UserProfile from "./pages/UserProfile";
+import UserProfile from "./pages/UserProfile/UserProfile";
 // import data origin
 
 function App() {

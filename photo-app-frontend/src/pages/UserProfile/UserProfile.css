@@ -1,0 +1,27 @@
+.avatar{
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.userInfos{
+    text-align: left;
+    list-style: none;
+}
+
+.username{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.role{
+    color:#808080
+}
+
+.user{
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+}
+
