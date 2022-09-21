@@ -5,7 +5,8 @@ import { Routes, Route } from "react-router-dom";
 import Searchbar from "./components/Searchbar";
 import ErrorPage from "./pages/ErrorPage";
 import AboutPage from "./pages/AboutPage";
-import UserProfile from "./pages/UserProfile/UserProfile";
+import CurrentUserProfile from "./pages/UserProfile/CurrentUserProfile";
+import UserProfile from "./pages/UserProfile";
 // import data origin
 
 function App() {
@@ -19,7 +20,7 @@ function App() {
         <Route path="/" element={<LogIn />} />
         <Route path="user/:username" element={<UserProfile />} />
         <Route path="about" element={<AboutPage />} />
-        <Route path="profile" element={<UserProfile />} />
+        <Route path="profile" element={<CurrentUserProfile />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

@@ -4,21 +4,18 @@ import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import axiosInstance from "../utils/axiosInstance";
 import DeleteImage from "./DeleteImage";
-import { AuthContext } from "../context/auth.context";
 import { useParams } from "react-router";
-
 
 const API_URL = "https://lets-shoot.herokuapp.com";
 
 const UserPictures = ({ id }) => {
-  const {username} = useParams()
+  const { username } = useParams();
   const [pictures, setPictures] = useState([]);
-  const {user} = useContext(AuthContext)
   useEffect(() => {
     axiosInstance
-      .get(`${API_URL}/api/images?shot_by=${username}`)
+      .get(`${API_URL}/api/images/user/${id}`)
       .then((response) => {
-        console.log(response.data);
+        // console.log("Pictures from " + username, response.data);
         setPictures(response.data);
       })
       .catch((error) => {
@@ -49,9 +46,7 @@ const UserPictures = ({ id }) => {
           cols={3}
           rowHeight={164}
         >
-
           {pictures.map((picture) => (
-
             <ImageListItem key={picture.link}>
               <img
                 src={`${picture.link}?w=164&h=164&fit=crop&auto=format`}
