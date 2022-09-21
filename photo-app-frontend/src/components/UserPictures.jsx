@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import axiosInstance from "../utils/axiosInstance";
+import DeleteImage from "./DeleteImage";
 
 const API_URL = "https://lets-shoot.herokuapp.com";
 
@@ -21,17 +22,25 @@ const UserPictures = ({ id }) => {
       });
   }, []);
   //const filteredPictures = pictures.filter(pictures => {
-   // return pictures.model === "Mila"
-//})
+  // return pictures.model === "Mila"
+  //})
   return (
     <>
       <section>
         <h2>My Pictures</h2>
       </section>
-      <section >
-        <ImageList sx={{ width: "90%", height: 500, display: "flex",
-              flexDirection: "row",
-              justifyContent: "center", }} cols={3} rowHeight={164}>
+      <section>
+        <ImageList
+          sx={{
+            width: "90%",
+            height: 500,
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+          }}
+          cols={3}
+          rowHeight={164}
+        >
           {pictures.map((picture) => (
             <ImageListItem key={picture.link}>
               <img
@@ -40,6 +49,7 @@ const UserPictures = ({ id }) => {
                 alt={"users pic"}
                 loading="lazy"
               />
+              <DeleteImage />
             </ImageListItem>
           ))}
         </ImageList>
