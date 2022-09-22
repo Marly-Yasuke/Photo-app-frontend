@@ -7,6 +7,7 @@ import EditProfile from "./../components/EditProfile";
 import UserPictures from "./../components/UserPictures";
 import { convertLength } from "@mui/material/styles/cssUtils";
 import Button from "@mui/material/Button";
+import "./UserProfile/UserProfile.css";
 
 const API_URL = "https://lets-shoot.herokuapp.com";
 
