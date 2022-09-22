@@ -9,7 +9,6 @@ import { AuthContext } from "../context/auth.context";
 import CameraEnhanceIcon from "@mui/icons-material/CameraEnhance";
 import DiamondIcon from "@mui/icons-material/Diamond";
 import AutoFixHighIcon from "@mui/icons-material/AutoFixHigh";
-import ContentCutIcon from "@mui/icons-material/ContentCut";
 import ColorLensIcon from "@mui/icons-material/ColorLens";
 import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import WorkIcon from "@mui/icons-material/Work";
@@ -20,11 +19,10 @@ const API_URL = "https://lets-shoot.herokuapp.com";
 function Searchbar({ placeHolderSearch }) {
   const [filterData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
-  const { isLoggedIn, user } = useContext(AuthContext);
+  const { isLoggedIn, token } = useContext(AuthContext);
 
   useEffect(() => {
     if (!wordEntered) return;
-    const token = localStorage.getItem("authToken");
     axios
       .get(`${API_URL}/api/user?username=${wordEntered}`, {
         headers: {
@@ -36,7 +34,7 @@ function Searchbar({ placeHolderSearch }) {
         console.log(res.data);
       })
       .catch((e) => console.log(e));
-  }, [wordEntered]);
+  }, [wordEntered, token]);
 
   const handleFilter = (event) => {
     const searchWord = event.target.value;

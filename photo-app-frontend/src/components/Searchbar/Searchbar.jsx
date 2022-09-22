@@ -20,11 +20,10 @@ const API_URL = "https://lets-shoot.herokuapp.com";
 function Searchbar({ placeHolderSearch }) {
   const [filterData, setFilteredData] = useState([]);
   const [wordEntered, setWordEntered] = useState("");
-  const { isLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, token } = useContext(AuthContext);
 
   useEffect(() => {
     if (!wordEntered) return;
-    const token = localStorage.getItem("authToken");
     axios
       .get(`${API_URL}/api/user?username=${wordEntered}`, {
         headers: {
@@ -36,7 +35,7 @@ function Searchbar({ placeHolderSearch }) {
         console.log(res.data);
       })
       .catch((e) => console.log(e));
-  }, [wordEntered]);
+  }, [wordEntered, token]);
 
   const handleFilter = (event) => {
     const searchWord = event.target.value;

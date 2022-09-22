@@ -4,6 +4,7 @@ import ImageListItem from "@mui/material/ImageListItem";
 import axiosInstance from "../utils/axiosInstance";
 import DeleteImage from "./DeleteImage";
 import { API_URL } from "../utils/consts";
+import AddImage from "./AddImage";
 
 const UserPictures = ({ id }) => {
   const [pictures, setPictures] = useState([]);
@@ -31,7 +32,7 @@ const UserPictures = ({ id }) => {
       <section>
         <h2>My Pictures</h2>
       </section>
-      <button>Add Photos</button>
+      <AddImage getLatestPictures={getLatestPictures} />
       <section>
         <ImageList
           sx={{
