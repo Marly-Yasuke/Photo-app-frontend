@@ -3,7 +3,7 @@ import axios from "axios";
 import { AuthContext } from "../context/auth.context";
 const API_URL = "https://lets-shoot.herokuapp.com";
 
-const AddImage = () => {
+const AddImage = ({ getLatestPictures }) => {
   const [image, setImage] = useState("");
   const { authenticateUser, token } = useContext(AuthContext);
 
@@ -22,7 +22,7 @@ const AddImage = () => {
     axios(config)
       .then((res) => {
         console.log(res.data);
-        authenticateUser();
+        getLatestPictures();
       })
       .catch((e) => {
         console.error(e);
