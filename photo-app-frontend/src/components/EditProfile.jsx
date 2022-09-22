@@ -5,11 +5,11 @@ const API_URL = "https://lets-shoot.herokuapp.com";
 
 const EditProfile = () => {
   const [image, setImage] = useState("");
-  const { authenticateUser } = useContext(AuthContext);
+  const { authenticateUser, token } = useContext(AuthContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const token = localStorage.getItem("authToken");
+
     const fd = new FormData();
     fd.append("avatar", image);
     const config = {

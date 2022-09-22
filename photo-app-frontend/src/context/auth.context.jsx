@@ -1,26 +1,31 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useCallback, createContext } from "react";
 import axios from "axios";
-const API_URL = "https://lets-shoot.herokuapp.com";
+import { API_URL } from "../utils/consts";
 
-const AuthContext = React.createContext();
+const AuthContext = createContext();
 
 function AuthProviderWrapper(props) {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [token, setToken] = useState("");
+
+  useEffect(() => {
+    const token = localStorage.getItem("authToken");
+    setToken(token);
+  }, []);
 
   const storeToken = (token) => {
     localStorage.setItem("authToken", token);
+    setToken(token);
   };
 
-  const authenticateUser = () => {
-    // Get the stored token from the localStorage
-    const storedToken = localStorage.getItem("authToken");
+  const authenticateUser = useCallback(() => {
     // If the token exists in the localStorage
-    if (storedToken) {
+    if (token) {
       axios
         .get(`${API_URL}/api/auth/verify`, {
-          headers: { Authorization: `Bearer ${storedToken}` },
+          headers: { Authorization: `Bearer ${token}` },
         })
         .then((response) => {
           // If the server verifies that JWT token is valid
@@ -41,10 +46,11 @@ function AuthProviderWrapper(props) {
       setIsLoading(false);
       setUser(null);
     }
-  };
+  }, [token]);
+
   useEffect(() => {
     authenticateUser();
-  }, []);
+  }, [authenticateUser]);
 
   return (
     <AuthContext.Provider
@@ -52,6 +58,7 @@ function AuthProviderWrapper(props) {
         isLoggedIn,
         isLoading,
         user,
+        token,
         storeToken,
         authenticateUser,
       }}
