@@ -1,27 +1,26 @@
-import React from "react";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useCallback } from "react";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import axiosInstance from "../utils/axiosInstance";
 import DeleteImage from "./DeleteImage";
-import { useParams } from "react-router";
-
-const API_URL = "https://lets-shoot.herokuapp.com";
+import { API_URL } from "../utils/consts";
+import AddImage from "./AddImage";
 
 const UserPictures = ({ id }) => {
-  const { username } = useParams();
   const [pictures, setPictures] = useState([]);
-  useEffect(() => {
+
+  const getLatestPictures = useCallback(() => {
     axiosInstance
       .get(`${API_URL}/api/images/user/${id}`)
       .then((response) => {
-        // console.log("Pictures from " + username, response.data);
         setPictures(response.data);
       })
       .catch((error) => {
         console.log("No images found");
       });
-  }, [username]);
+  }, [id]);
+
+  useEffect(getLatestPictures, [getLatestPictures]);
 
   // const filteredPictures = pictures.filter((pictures) => {
   //   console.log(pictures.model);
@@ -33,7 +32,7 @@ const UserPictures = ({ id }) => {
       <section>
         <h2>My Pictures</h2>
       </section>
-      <button>Add Photos</button>
+      <AddImage getLatestPictures={getLatestPictures} />
       <section>
         <ImageList
           sx={{
@@ -55,7 +54,10 @@ const UserPictures = ({ id }) => {
                 alt={"users pic"}
                 loading="lazy"
               />
-              {/* <DeleteIImage /> */}
+              <DeleteImage
+                imageId={picture._id}
+                getLatestPictures={getLatestPictures}
+              />
             </ImageListItem>
           ))}
         </ImageList>

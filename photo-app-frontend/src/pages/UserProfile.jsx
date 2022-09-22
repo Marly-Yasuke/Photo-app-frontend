@@ -1,22 +1,23 @@
 import { height } from "@mui/system";
 import Avatar from "@mui/material/Avatar";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import EditProfile from "./../components/EditProfile";
 import UserPictures from "./../components/UserPictures";
-import { convertLength } from "@mui/material/styles/cssUtils";
 import Button from "@mui/material/Button";
-
-const API_URL = "https://lets-shoot.herokuapp.com";
+import "./UserProfile/UserProfile.css";
+import { AuthContext } from "../context/auth.context";
+import { API_URL } from "../utils/consts";
 
 const UserProfile = () => {
   const { username } = useParams();
   const [userToDisplay, setUser] = useState(null);
   const [showForm, setShowForm] = useState(false);
+  const { token } = useContext(AuthContext);
+
   useEffect(() => {
     if (username) {
-      const token = localStorage.getItem("authToken");
       axios
         .get(`${API_URL}/api/user?username=${username}`, {
           headers: { Authorization: "Bearer " + token },
@@ -26,7 +27,7 @@ const UserProfile = () => {
           setUser(user);
         });
     }
-  }, [username]);
+  }, [username, token]);
 
   // users profile
   if (!userToDisplay) return <div>No profile</div>;
