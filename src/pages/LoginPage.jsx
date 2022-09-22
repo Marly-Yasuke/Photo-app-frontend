@@ -25,7 +25,7 @@ function Copyright(props) {
       {...props}
     >
       {"Copyright © "}
-      Name of the app {""}
+      Let's Shoot {""}
       {new Date().getFullYear()}
       {"."}
     </Typography>
