@@ -5,11 +5,13 @@ import { Link, NavLink } from "react-router-dom";
 import { Route, Router } from "react-router-dom";
 import Searchbar from "../Searchbar/Searchbar";
 import "./Navbar.css";
+import Logout from "../../context/auth.context";
 
 function Navbar() {
   const { isLoggedIn, user } = useContext(AuthContext);
   return (
     <nav>
+      <button onClick={Logout}>logout</button>
       {isLoggedIn && (
         <>
           <NavLink
