@@ -1,12 +1,18 @@
 import React from "react";
 import { useContext } from "react";
 import { AuthContext } from "../context/auth.context";
-import { Link, NavLink } from "react-router-dom";
-import { Route, Router } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import Searchbar from "./Searchbar";
+import { Button } from "@mui/material";
 
 function Navbar() {
-  const { isLoggedIn, user } = useContext(AuthContext);
+  const { isLoggedIn, user, authenticateUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const destroyToken = () => {
+    localStorage.removeItem("authToken");
+    navigate("/");
+    authenticateUser();
+  };
   return (
     <nav>
       {isLoggedIn && (
@@ -23,6 +29,7 @@ function Navbar() {
           >
             About
           </NavLink>{" "}
+          <button onClick={destroyToken}>Logout</button>
         </>
       )}
       {!isLoggedIn && <></>}{" "}

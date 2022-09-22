@@ -7,6 +7,7 @@ import ErrorPage from "./pages/ErrorPage";
 import AboutPage from "./pages/AboutPage";
 import CurrentUserProfile from "./pages/UserProfile/CurrentUserProfile";
 import UserProfile from "./pages/UserProfile";
+import ProtectedRoute from "./components/ProtectedRoute";
 // import data origin
 
 function App() {
@@ -18,9 +19,11 @@ function App() {
       </header>
       <Routes>
         <Route path="/" element={<LogIn />} />
-        <Route path="user/:username" element={<UserProfile />} />
-        <Route path="about" element={<AboutPage />} />
-        <Route path="profile" element={<CurrentUserProfile />} />
+        <Route path="/" element={<ProtectedRoute />}>
+          <Route path="user/:username" element={<UserProfile />} />
+          <Route path="about" element={<AboutPage />} />
+          <Route path="profile" element={<CurrentUserProfile />} />
+        </Route>
         <Route path="*" element={<ErrorPage />} />
       </Routes>
     </div>

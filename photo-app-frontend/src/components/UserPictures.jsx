@@ -46,6 +46,7 @@ const UserPictures = ({ id }) => {
           cols={3}
           rowHeight={164}
         >
+          {/* component reused many time through .map */}
           {pictures.map((picture) => (
             <ImageListItem key={picture.link}>
               <img
