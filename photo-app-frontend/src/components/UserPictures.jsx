@@ -54,7 +54,7 @@ const UserPictures = ({ id }) => {
                 alt={"users pic"}
                 loading="lazy"
               />
-              {/* <DeleteIImage /> */}
+              <DeleteImage />
             </ImageListItem>
           ))}
         </ImageList>
